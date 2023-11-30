@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router";
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
+import Dashboard from "./Components/Dashboard";
+import Addvehicle from "./Components/Addvehicle"
+import Categories from "./Components/Categories";
+import Editvehicle from "./Components/Editvehicle";
+import Addcategory from "./Components/Addcategory";
+import Editcategory from "./Components/Editcategory";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/addvehicle" element={<Addvehicle />} />
+        <Route path="/addcategory" element={<Addcategory />} />
+        <Route path="/editvehicle/:id" element={<Editvehicle />} />
+        <Route path="/editcategory/:id" element={<Editcategory />} />
+        <Route path="/categories" element={<Categories />} />
+      </Routes>
+    </>
   );
 }
 
