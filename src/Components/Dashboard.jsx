@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [numberOfPages, setNumberOfPages] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams({"page": ""});
   const pageNumber = searchParams.get("page");
+  
+  //useQuery for fetching the data and storing in cache for faster access
   const { isPending, isError, data, refetch } = useQuery({
     queryKey: ["vehicles"],
     queryFn: () => getVehicles(pageNumber),
@@ -27,6 +29,8 @@ const Dashboard = () => {
     setNumberOfPages([...buttonArray]);
     return res;
   }
+
+  //function for deleting a car
   async function deleteCar(id) {
     const apiRes = await fetch(`http://localhost:5050/dashboard/${id}`, {
       method: "DELETE",
@@ -42,6 +46,7 @@ const Dashboard = () => {
     }
   }
 
+  //componnet life cycle for refetching the data on the re-render
   useEffect(() => {
     refetch();
   }, [searchParams])

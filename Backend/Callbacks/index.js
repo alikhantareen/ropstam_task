@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 
+
+//function to access rows on the dashboard
 async function dashboard(req, res) {
   try {
     const { id } = req.params;
@@ -24,6 +26,7 @@ async function dashboard(req, res) {
   }
 }
 
+//function to get a specific vehicle for editing
 async function getSingleVehicle(req, res) {
   const { id } = req.params;
   try {
@@ -34,6 +37,8 @@ async function getSingleVehicle(req, res) {
   }
 }
 
+
+//function to get a specific category for editing
 async function getSingleCat(req, res) {
   const { id } = req.params;
   try {
@@ -44,6 +49,8 @@ async function getSingleCat(req, res) {
   }
 }
 
+
+//function for adding vehicle
 async function addVehicle(req, res) {
   const token = req.body.token;
   if (jwt.verify(token, process.env.JWT_SECRET)) {
@@ -59,6 +66,8 @@ async function addVehicle(req, res) {
   }
 }
 
+
+//function to updating vehicle
 async function updateVehicle(req, res) {
   const token = req.body.token;
   if (jwt.verify(token, process.env.JWT_SECRET)) {
@@ -79,6 +88,8 @@ async function updateVehicle(req, res) {
   }
 }
 
+
+//funciton for updating category
 async function updateCategory(req, res) {
   const token = req.body.token;
   if (jwt.verify(token, process.env.JWT_SECRET)) {
@@ -99,6 +110,7 @@ async function updateCategory(req, res) {
   }
 }
 
+//function for deleting category
 async function deleteVehicle(req, res) {
   try {
     const { id } = req.params;
@@ -109,6 +121,7 @@ async function deleteVehicle(req, res) {
   }
 }
 
+//function for getting all categories
 async function getCategories(req, res) {
   try {
     const { id } = req.params;
@@ -119,6 +132,7 @@ async function getCategories(req, res) {
   }
 }
 
+//function for adding category
 async function addCategory(req, res) {
   const token = req.body.token;
   if (jwt.verify(token, process.env.JWT_SECRET)) {
@@ -145,6 +159,7 @@ async function addCategory(req, res) {
   }
 }
 
+//function for deleting a category
 async function deleteCategory(req, res) {
   try {
     const { id } = req.params;
@@ -155,6 +170,7 @@ async function deleteCategory(req, res) {
   }
 }
 
+//signup function
 async function signup(req, res) {
   const { email, username } = req.body;
   if (!email || !username) {
@@ -192,6 +208,8 @@ async function signup(req, res) {
   }
 }
 
+
+//login function
 async function login(req, res) {
   try {
     if (!req.body.email || !req.body.password) {
@@ -235,7 +253,7 @@ async function login(req, res) {
   }
 }
 
-// Function to send a welcome email
+// function to send a welcome email
 async function sendWelcomeEmail(email, username, password) {
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -254,6 +272,7 @@ async function sendWelcomeEmail(email, username, password) {
 
   await transporter.sendMail(mailOptions);
 }
+
 
 module.exports = {
   signup,

@@ -8,6 +8,8 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams({"signup": ""});
   const success = searchParams.get("signup");
+
+  //function for logging in the user
   async function login(email, password) {
     const apiCall = await fetch("http://localhost:5050/login", {
       method: "POST",
@@ -27,6 +29,8 @@ const Login = () => {
       setError(apiRes.message);
     }
   }
+
+  //defining a form instance
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -44,6 +48,8 @@ const Login = () => {
       login(values.email, values.password);
     },
   });
+
+  //useEffect to check if the user is logged in or not for protected routes
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/?page=1");

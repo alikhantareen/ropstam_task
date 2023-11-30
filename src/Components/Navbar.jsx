@@ -3,10 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
+  //function to logout the user
   function logout() {
     localStorage.clear();
     navigate("/login");
   }
+
+  //useEffect to check if the user is logged in or not for protected routes
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");

@@ -8,6 +8,7 @@ const Addcategory = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
+  //functoin to add category
   async function addCategory(cat) {
     const apiCall = await fetch(`http://localhost:5050/addcategory`, {
       method: "POST",
@@ -26,6 +27,7 @@ const Addcategory = () => {
     }
   }
 
+  //defining form instance
   const formik = useFormik({
     initialValues: {
       category: "",

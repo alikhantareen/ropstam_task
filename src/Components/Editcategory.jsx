@@ -11,6 +11,8 @@ const Editcategory = () => {
   const [error, setError] = useState(null);
   const [cat, setCat] = useState({});
 
+
+  //useQuery for fetching the data and storing in cache for faster access
   const { isPending, isError, data } = useQuery({
     queryKey: ["categories"],
     queryFn: () => getSpecificCat(id),
@@ -29,6 +31,7 @@ const Editcategory = () => {
     }
   }
 
+  //function for updating category
   async function updateCategory(val) {
     const { category } = val;
     const apiCall = await fetch(`http://localhost:5050/editcategory/${id}`, {
@@ -48,6 +51,7 @@ const Editcategory = () => {
     }
   }
 
+  //defining a form instance
   const edit_form = useFormik({
     enableReinitialize: true,
     initialValues: {

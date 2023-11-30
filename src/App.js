@@ -8,6 +8,8 @@ import Editvehicle from "./Components/Editvehicle";
 import Addcategory from "./Components/Addcategory";
 import Editcategory from "./Components/Editcategory";
 
+
+//all defined routes of the app - different screen based on the different routes
 function App() {
   return (
     <>

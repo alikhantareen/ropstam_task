@@ -6,6 +6,8 @@ import * as Yup from "yup";
 const Login = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+
+  //funciton to sign up the user
   async function signup(email, username) {
     const apiCall = await fetch("http://localhost:5050/signup", {
       method: "POST",
@@ -18,14 +20,12 @@ const Login = () => {
     const apiRes = await apiCall.json();
     if (apiRes.response) {
       navigate("/login?signup=success");
-      // localStorage.setItem("token", apiRes.token);
-      // localStorage.setItem("user", apiRes.user.email);
-      // localStorage.setItem("user_id", apiRes.user._id);
-      // navigate(`/`);
     } else {
       setError(apiRes.message);
     }
   }
+
+  //defining a form instance
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -43,6 +43,8 @@ const Login = () => {
       signup(values.email, values.username);
     },
   });
+
+  //useEffect to check if the user is logged in or not for protected routes
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/?page=1");

@@ -11,6 +11,7 @@ const Editvehicle = () => {
   const [error, setError] = useState(null);
   const [vehicle, setVehicle] = useState({});
 
+  //useQuery for fetching the data and storing in cache for faster access
   const { isPending, isError, data } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
@@ -26,6 +27,7 @@ const Editvehicle = () => {
     return res.data;
   }
 
+  //function to get a specific vehicle to edit
   async function getSpecificVehicle(id) {
     const apiRes = await fetch(`http://localhost:5050/editvehicle/${id}`);
     const res = await apiRes.json();
@@ -36,6 +38,7 @@ const Editvehicle = () => {
     }
   }
 
+  //function for updating the vehicle
   async function updateVehicle(val) {
     const { model, make, registration, color, category } = val;
     const apiCall = await fetch(`http://localhost:5050/editvehicle/${id}`, {
@@ -59,10 +62,12 @@ const Editvehicle = () => {
     }
   }
 
+  //useEffect for re-fetching the data after re-render
   useEffect(() => {
     getSpecificVehicle(id);
   }, []);
 
+  //defning a form instance
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {

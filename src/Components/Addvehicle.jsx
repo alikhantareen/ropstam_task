@@ -16,6 +16,7 @@ const Addvehicle = () => {
     refetchIntervalInBackground: true,
   });
 
+  //function for getting all the categories
   async function getCategories() {
     const apiRes = await fetch(
       `http://localhost:5050/categories/${localStorage.getItem("user_id")}`
@@ -23,6 +24,8 @@ const Addvehicle = () => {
     const res = await apiRes.json();
     return res.data;
   }
+
+  //function to add vehicle
   async function addVehicle(val) {
     const { model, make, registration, color, category } = val;
     const apiCall = await fetch("http://localhost:5050/addvehicle", {
@@ -46,6 +49,8 @@ const Addvehicle = () => {
       setError(apiRes.message);
     }
   }
+
+  //defining a form instance
   const formik = useFormik({
     initialValues: {
       model: "",

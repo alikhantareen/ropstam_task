@@ -15,10 +15,13 @@ require("dotenv").config();
   console.log("🟢 MongoDB successfully connected.");
 })();
 
+//required CORS and BODYPARSER
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+//API's for different routes
 app.get("/:id", routes.dashboard);
 app.get("/categories/:id", routes.getCategories);
 app.get("/editvehicle/:id", routes.getSingleVehicle);
@@ -32,7 +35,7 @@ app.post("/addvehicle", routes.addVehicle);
 app.delete("/categories/:id", routes.deleteCategory);
 app.delete("/dashboard/:id", routes.deleteVehicle);
 
-// Server
+// Server connection
 app.listen(process.env.PORT, () => {
   console.log(`🟢 Server is running...`);
 });

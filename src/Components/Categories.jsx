@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const Categories = () => {
 
+  //useQuery for fetching the data and storing in cache for faster access
   const { isPending, isError, data, refetch } = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
@@ -20,6 +21,7 @@ const Categories = () => {
     return res.data;
   }
 
+  //function for deleting a category
   async function deleteCategory(id) {
     const apiRes = await fetch(`http://localhost:5050/categories/${id}`, {
       method: "DELETE",
